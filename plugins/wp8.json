@@ -1,0 +1,40 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"File\"><param name=\"wp-package\" value=\"File\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"wp-package\" value=\"FileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"wp-package\" value=\"Notification\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "org.apache.cordova.file": {
+            "PACKAGE_NAME": "{68681a10-e1c4-11e4-ae55-bf223b5f7eb9}"
+        },
+        "org.apache.cordova.file-transfer": {
+            "PACKAGE_NAME": "{68681a10-e1c4-11e4-ae55-bf223b5f7eb9}"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "{68681a10-e1c4-11e4-ae55-bf223b5f7eb9}"
+        }
+    },
+    "dependent_plugins": {}
+}

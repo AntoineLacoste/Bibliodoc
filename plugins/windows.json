@@ -1,0 +1,21 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "Bibliodoc"
+        },
+        "org.apache.cordova.file": {
+            "PACKAGE_NAME": "Bibliodoc"
+        },
+        "org.apache.cordova.file-transfer": {
+            "PACKAGE_NAME": "Bibliodoc"
+        }
+    },
+    "dependent_plugins": {}
+}
