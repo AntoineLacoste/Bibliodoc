@@ -19,6 +19,10 @@
                         {
                             "xml": "<feature name=\"Notification\"><param name=\"wp-package\" value=\"Notification\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WebSql\"><param name=\"wp-package\" value=\"WebSql\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -34,6 +38,12 @@
         },
         "org.apache.cordova.dialogs": {
             "PACKAGE_NAME": "{68681a10-e1c4-11e4-ae55-bf223b5f7eb9}"
+        },
+        "com.msopentech.indexedDB": {
+            "PACKAGE_NAME": "{854ec560-e431-11e4-a0e3-7105ea468f42}"
+        },
+        "com.msopentech.websql": {
+            "PACKAGE_NAME": "{854ec560-e431-11e4-a0e3-7105ea468f42}"
         }
     },
     "dependent_plugins": {}

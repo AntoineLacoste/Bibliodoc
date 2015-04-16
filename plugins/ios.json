@@ -56,6 +56,12 @@
         },
         "org.apache.cordova.file-transfer": {
             "PACKAGE_NAME": "com.hello"
+        },
+        "com.msopentech.indexedDB": {
+            "PACKAGE_NAME": "com.bibliodoc"
+        },
+        "com.msopentech.websql": {
+            "PACKAGE_NAME": "com.bibliodoc"
         }
     },
     "dependent_plugins": {}

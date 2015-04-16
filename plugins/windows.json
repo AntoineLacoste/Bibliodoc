@@ -15,7 +15,14 @@
         },
         "org.apache.cordova.file-transfer": {
             "PACKAGE_NAME": "Bibliodoc"
+        },
+        "com.msopentech.indexedDB": {
+            "PACKAGE_NAME": "Bibliodoc"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "com.msopentech.websql": {
+            "PACKAGE_NAME": "Bibliodoc"
+        }
+    }
 }
