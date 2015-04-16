@@ -97,6 +97,7 @@ function InsertData(nomDb, nomTable, aObjets, fctError) {
                     var b=document.createTextNode(''+i);
                     a.appendChild(b);
                     document.getElementById('indexedDBViewer').appendChild(a);
+                    console.log('je suis la');
                     // On gère les erreurs qui peuvent survenir lors de l'ajout de donnée
                     req.onerror = err;
                 }
