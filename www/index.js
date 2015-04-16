@@ -26,7 +26,7 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|iembile)/)) { 
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) { 
         document.addEventListener("deviceready", onDeviceReady, false);
     } else {
         app.onDeviceReady();
