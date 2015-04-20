@@ -11,7 +11,7 @@
         Antoine Lacoste
     </author> 
     <content src="index.html" />
-    <gap:plugin name="com.msopentech.indexedDB" version="0.1.1"/>
+    <!--<gap:plugin name="com.msopentech.indexedDB" version="0.1.1"/>-->
     <gap:plugin name="org.apache.cordova.dialogs" />
     <access origin="*" />
 </widget>
