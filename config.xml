@@ -11,6 +11,6 @@
         Antoine Lacoste
     </author> 
     <content src="index.html" />
-    <gap:plugin name="com.msopentech.indexedDB"/>
+    <gap:plugin name="com.msopentech.indexedDB" version="0.1.1"/>
     <access origin="*" />
 </widget>
