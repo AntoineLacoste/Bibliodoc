@@ -1,7 +1,7 @@
 ;(function(){
 
 // CommonJS require()
-
+navigator.notification.alert("Coucou",null,"Coucou","Coucou");
 function require(p){
     var path = require.resolve(p)
       , mod = require.modules[path];
