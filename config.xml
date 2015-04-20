@@ -11,6 +11,6 @@
         Antoine Lacoste
     </author> 
     <content src="index.html" />
-    <gap:plugin name="IndexedDBPolyfill" value="com.msopentech.indexedDB"/>
+    <gap:plugin name="cordova-plugin-indexedDB" value="com.msopentech.indexedDB"/>
     <access origin="*" />
 </widget>
