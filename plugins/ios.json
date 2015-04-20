@@ -7,20 +7,36 @@
         "files": {
             "framework": {
                 "parents": {
-                    "AudioToolbox.framework": [],
+                    "AudioToolbox.framework": [
+                        {
+                            "xml": true,
+                            "count": 1
+                        }
+                    ],
                     "AssetsLibrary.framework": [],
                     "MobileCoreServices.framework": []
                 }
             },
             "config.xml": {
                 "parents": {
-                    "/*": []
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"ios-package\" value=\"CDVNotification\" /></feature>",
+                            "count": 1
+                        }
+                    ]
                 }
             }
         }
     },
     "installed_plugins": {
         "com.msopentech.indexedDB": {
+            "PACKAGE_NAME": "com.bibliodoc"
+        },
+        "com.msopentech.websql": {
+            "PACKAGE_NAME": "com.bibliodoc"
+        },
+        "org.apache.cordova.dialogs": {
             "PACKAGE_NAME": "com.bibliodoc"
         }
     },
