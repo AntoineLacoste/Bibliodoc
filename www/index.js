@@ -111,7 +111,11 @@ function addPerson(e) {
     }
  
     request.onsuccess = function(e) {
-        console.log("Woot! Did it");
+        var a=document.createElement("p");
+        var b=document.createTextNode('ajout effectué');
+        a.appendChild(b);
+        document.getElementById("anduin").appendChild(a);
+
     }
 }
 
