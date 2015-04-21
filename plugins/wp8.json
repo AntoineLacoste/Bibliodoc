@@ -1,0 +1,36 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"WebSql\"><param name=\"wp-package\" value=\"WebSql\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"wp-package\" value=\"Notification\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.msopentech.indexedDB": {
+            "PACKAGE_NAME": "{bc4914a0-e7f4-11e4-9f2c-c1d75efc62c6}"
+        },
+        "com.msopentech.websql": {
+            "PACKAGE_NAME": "{bc4914a0-e7f4-11e4-9f2c-c1d75efc62c6}"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "{bc4914a0-e7f4-11e4-9f2c-c1d75efc62c6}"
+        }
+    },
+    "dependent_plugins": {}
+}
