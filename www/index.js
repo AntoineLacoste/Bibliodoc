@@ -65,6 +65,7 @@ function testIDB(){
 
 function testID(){
     DeleteDatabase("idarticle_people");
+    con
     var openRequest = indexedDB.open("idarticle_people",1);
  
     openRequest.onupgradeneeded = function(e) {
@@ -73,7 +74,6 @@ function testID(){
         if(!thisDB.objectStoreNames.contains("people")) {
             thisDB.createObjectStore("people",{autoIncrement:true});
         }
-    console.log('je suis la');
     openRequest.onsuccess = function(e) {
 
     
