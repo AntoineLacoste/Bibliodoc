@@ -1,1 +1,0 @@
-C:\xampp\htdocs\Bibliodoc1\platforms\windows\CordovaApp.Windows.jsproj;neutral
