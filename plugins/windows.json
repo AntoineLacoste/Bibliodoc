@@ -9,6 +9,9 @@
     "installed_plugins": {
         "com.msopentech.indexedDB": {
             "PACKAGE_NAME": "Bibliodoc"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "Bibliodoc"
         }
     },
     "dependent_plugins": {

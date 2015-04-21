@@ -7,7 +7,12 @@
         "files": {
             "res/xml/config.xml": {
                 "parents": {
-                    "/*": []
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        }
+                    ]
                 }
             },
             "AndroidManifest.xml": {
@@ -20,6 +25,12 @@
     "installed_plugins": {
         "com.msopentech.indexedDB": {
             "PACKAGE_NAME": "com.bibliodoc"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "com.bibliodoc1"
+        },
+        "com.msopentech.websql": {
+            "PACKAGE_NAME": "com.bibliodoc1"
         }
     },
     "dependent_plugins": {}

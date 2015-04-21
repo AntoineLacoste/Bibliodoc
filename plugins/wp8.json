@@ -7,14 +7,29 @@
         "files": {
             "config.xml": {
                 "parents": {
-                    "/*": []
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"WebSql\"><param name=\"wp-package\" value=\"WebSql\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"wp-package\" value=\"Notification\" /></feature>",
+                            "count": 1
+                        }
+                    ]
                 }
             }
         }
     },
     "installed_plugins": {
         "com.msopentech.indexedDB": {
-            "PACKAGE_NAME": "{854ec560-e431-11e4-a0e3-7105ea468f42}"
+            "PACKAGE_NAME": "{7068c780-e75c-11e4-b2dd-ed1d93af2129}"
+        },
+        "com.msopentech.websql": {
+            "PACKAGE_NAME": "{7068c780-e75c-11e4-b2dd-ed1d93af2129}"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "{7068c780-e75c-11e4-b2dd-ed1d93af2129}"
         }
     },
     "dependent_plugins": {}
