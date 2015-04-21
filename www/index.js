@@ -26,7 +26,7 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-       if(navigator.userAgent.match(/Chrome/)){
+       if(navigator.userAgent.match(/Chrome|Trident/)){
             app.onDeviceReady();
         }
         else{
@@ -43,7 +43,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-
+        console.log('user : '+ navigator.userAgent);
         testIDB();
     }
 };
@@ -64,7 +64,7 @@ function testIDB(){
 }
 
 function testID(){
-    //DeleteDatabase("idarticle_people");
+    DeleteDatabase("idarticle_people");
     var openRequest = indexedDB.open("idarticle_people",1);
  
     openRequest.onupgradeneeded = function(e) {
