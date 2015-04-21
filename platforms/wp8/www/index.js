@@ -38,7 +38,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        navigator.notification.alert('user agent : '+navigator.userAgent,null,"Coucou","Coucou");
+        navigator.notification.alert("Coucou",null,"Coucou","Coucou");
         testIDB();
     }
 };

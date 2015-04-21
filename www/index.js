@@ -26,7 +26,12 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+       if(navigator.userAgent.match(/Chrome/)){
+            app.onDeviceReady();
+        }
+        else{
         document.addEventListener("deviceready", app.onDeviceReady, false);
+        }
 
 },
     // deviceready Event Handler
@@ -38,7 +43,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        navigator.notification.alert('user agent : '+navigator.userAgent,null,"Coucou","Coucou");
+
         testIDB();
     }
 };
@@ -50,15 +55,70 @@ app.initialize();
 function testIDB(){
 
                 //// Suppression BDD
-                DeleteDatabase("Test");
+                //DeleteDatabase("Test");
                 //// Création structure BDD
-                CreateIdbBibliodoc();
+                //CreateIdbBibliodoc();
                 //// Insertion jeu de test
-                InsertDataTest();
+                //InsertDataTest();
+                testID();
+}
+
+function testID(){
+    DeleteDatabase("idarticle_people");
+    var openRequest = indexedDB.open("idarticle_people",1);
+ 
+    openRequest.onupgradeneeded = function(e) {
+        var thisDB = e.target.result;
+ 
+        if(!thisDB.objectStoreNames.contains("people")) {
+            thisDB.createObjectStore("people",{autoIncrement:true});
+        }
+    console.log('je suis la');
+    openRequest.onsuccess = function(e) {
+
+    
+        console.log("running onsuccess");
+ 
+        db = e.target.result;
+ 
+        //Listen for add clicks
+        document.getElementById("addButton").addEventListener("click", addPerson, false);
+    }
+}
+}
+
+function addPerson(e) {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+ 
+    console.log("About to add "+name+"/"+email);
+ 
+    var transaction = db.transaction(["people"],"readwrite");
+    var store = transaction.objectStore("people",{autoIncrement:true});
+ 
+    //Define a person
+    var person = {
+        name:name,
+        email:email,
+        created:new Date()
+    }
+ 
+    //Perform the add
+    var request = store.add(person);
+ 
+    request.onerror = function(e) {
+        console.log("Error",e.target.error.name);
+        //some type of error handler
+    }
+ 
+    request.onsuccess = function(e) {
+        console.log("Woot! Did it");
+    }
 }
 
 
 function InsertDataTest() {
+    console.log('jinsere');
     InsertData("Test", 'utilisateur', [{ "nom": "ELIPCE", "prenom": "Informatique", "date_naissance": "2014-07-23", "mail": "yann.plantevin@elipce.com", "login": "elipce", "pwd": "7e54dad3d4b787512e80e6058a01ccecfef6b188", "first_conn": "0", "societe_id": 1 },
                                                 { "nom": "PEREZ", "prenom": "Vivian", "date_naissance": "1985-02-26", "mail": "vivian.perez@elipce.com", "login": "viv", "pwd": "", "societe_id": 1, "item1": "a", "item2": "b" }]);
 

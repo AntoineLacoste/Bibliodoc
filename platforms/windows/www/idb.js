@@ -7,6 +7,7 @@
 
     // Variables
     var dbHandle = null;
+
     try {
         // Tentative de Connexion à la BDD
         var req;
@@ -32,8 +33,10 @@
         req.onblocked = function (e) { console.log('blocked BDD'); }
 
         // Si la BDD n'existe pas => Création structure BDD
+        console.log('anduin');
         req.onupgradeneeded = function (e) {
             // Récupération de la connexion
+            console.log('anduin1');
             dbHandle = e.target.result;
 
             var store;
@@ -41,6 +44,7 @@
             for (var nomStore in objetStructure) {
                 var aIndex = objetStructure[nomStore];
                 // Création magasin
+                console.log('table créer : ' + nomStore);
                 store = e.currentTarget.result.createObjectStore(nomStore, { keyPath: "id", autoIncrement: true });
                 // Parcours des index du magasin (champs en SQL)
                 for (var index in aIndex) {
@@ -56,8 +60,7 @@
     }
     catch (ex) {
         // Affichage message erreur
-        var mess1 = new Windows.UI.Popups.MessageDialog(ex.message);
-        mess1.showAsync();
+        navigator.notification.alert(ex.message,null,null,null);
     }
 }
 
@@ -85,7 +88,15 @@ function InsertData(nomDb, nomTable, aObjets, fctError) {
     // Gestion erreurs
     var err = (fctError===undefined?function (e){console.log("erreur InsertData table:" + nomTable+' '+e.message);}:fctError);
     // Connexion BDD
-    var db = window.indexedDB.open(nomDb);
+        var db;
+        if (window.indexedDB) {
+            console.log('Opening Native IndexedDB');
+            db = window.indexedDB.open(nomDb);
+        }
+        else {
+            console.log('Opening IndexedDB Shimm');
+            db = window.shimIndexedDB.open(nomDb);
+        }
     // Connexion OK
     if (db) {
         // Callback de connexion réussi
@@ -99,7 +110,7 @@ function InsertData(nomDb, nomTable, aObjets, fctError) {
                 // Parcours des objets à insérer
                 for (var i in aObjets) {
                     // On lui ajoute alors l'objet voulu avec la fonction add
-                    req = table.put(aObjets[i]);
+                    req = table.add(aObjets[i]);
                     // On gère les erreurs qui peuvent survenir lors de l'ajout de donnée
                     req.onerror = err;
                 }
@@ -261,7 +272,7 @@ function Read(nomDb, magasins, magCondition, nomIndex, range) {
 
     
     // Promise
-    return new WinJS.Promise(function (ok, ko) {
+    return new Promise(function (ok, ko) {
         // Connexion BDD
         var req;
         if (window.indexedDB) {
