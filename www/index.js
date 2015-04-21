@@ -64,7 +64,7 @@ function testIDB(){
 }
 
 function testID(){
-    DeleteDatabase("idarticle_people");
+    //DeleteDatabase("idarticle_people");
     var openRequest = indexedDB.open("idarticle_people",1);
  
     openRequest.onupgradeneeded = function(e) {
