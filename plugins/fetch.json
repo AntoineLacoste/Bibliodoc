@@ -14,7 +14,7 @@
     "com.msopentech.indexedDB": {
         "source": {
             "type": "registry",
-            "id": "com.msopentech.indexedDB"
+            "id": "com.msopentech.indexeddb"
         }
     }
 }
