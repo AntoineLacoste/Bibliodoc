@@ -28,7 +28,13 @@
         }
     },
     "installed_plugins": {
+        "com.msopentech.websql": {
+            "PACKAGE_NAME": "com.bibliodoc1"
+        },
         "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "com.bibliodoc1"
+        },
+        "com.msopentech.indexedDB": {
             "PACKAGE_NAME": "com.bibliodoc1"
         }
     },
