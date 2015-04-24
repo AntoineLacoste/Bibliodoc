@@ -26,12 +26,12 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-       if(navigator.userAgent.match(/Chrome|Trident/)){
-            app.onDeviceReady();
-        }
-        else{
-        document.addEventListener("deviceready", app.onDeviceReady, false);
-        }
+       //if(navigator.userAgent.match(/Chrome|Trident|Safari/)){
+        //    app.onDeviceReady();
+        //}
+        //else{
+            document.addEventListener("deviceready", app.onDeviceReady, false);
+        //}
 
 },
     // deviceready Event Handler
@@ -69,7 +69,12 @@ function testID(){
         'people': [['name', false], ['email', false], ['created', false]]
     }
     CreateDatabase("idarticle_people",aStruct);
-    var openRequest = indexedDB.open("idarticle_people",2);
+    var IDB = window.indexedDB || 
+                    window.mozIndexedDB ||
+                    window.webkitIndexedDB || 
+                    window.msIndexedDB || 
+                    window.shimIndexedDB;
+    var openRequest = IDB.open("idarticle_people",2);
 
     openRequest.onupgradeneeded = function(e) {
         var thisDB = e.target.result;
@@ -87,15 +92,22 @@ function testID(){
  
         //Listen for add clicks
         document.getElementById("addButton").addEventListener("click", addPerson, false);
+        var a=document.createElement("p");
+        var b=document.createTextNode('device ready');
+        a.appendChild(b);
+        document.getElementById("anduin").appendChild(a);
     }
 }
 
 
-function addPerson(e) {
-    var name = document.getElementById("name").value;
+function addPerson(e) {var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
  
     console.log("About to add "+name+"/"+email);
+ 
+    var transaction = db.transaction(["people"],"readwrite");
+    var store = transaction.objectStore("people",{autoIncrement:true});
+ 
     //Define a person
     var person = {
         name:name,
@@ -104,10 +116,21 @@ function addPerson(e) {
     }
  
     //Perform the add
-    InsertData("idarticle_people","people",[person]);
-
-                        
+    var request = store.add(person);
+ 
+    request.onerror = function(e) {
+        console.log("Error",e.target.error.name);
+        //some type of error handler
     }
+ 
+    request.onsuccess = function(e) {
+        var a=document.createElement("p");
+        var b=document.createTextNode('ajout effectué');
+        a.appendChild(b);
+        document.getElementById("anduin").appendChild(a);
+
+    }
+}
 
 
 function InsertDataTest() {

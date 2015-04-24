@@ -14,9 +14,6 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
-    <feature name="Notification">
-        <param name="ios-package" value="CDVNotification" />
-    </feature>
     <name>Bibliodoc</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -27,4 +24,7 @@
     <content src="index.html" />
     <gap:plugin name="org.apache.cordova.dialogs" />
     <access origin="*" />
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
 </widget>
