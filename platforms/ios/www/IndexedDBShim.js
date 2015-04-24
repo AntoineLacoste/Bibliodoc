@@ -2887,7 +2887,23 @@ var idbModules = {  // jshint ignore:line
         }
     }
 
-    window.shimIndexedDB.__useShim();
+    if ((typeof window.indexedDB === "undefined" || !window.indexedDB || poorIndexedDbSupport) && typeof window.openDatabase !== "undefined") {
+        window.shimIndexedDB.__useShim();
+    }
+    else {
+        window.IDBDatabase = window.IDBDatabase || window.webkitIDBDatabase;
+        window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction;
+        window.IDBCursor = window.IDBCursor || window.webkitIDBCursor;
+        window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange;
+        if(!window.IDBTransaction){
+            window.IDBTransaction = {};
+        }
+        /* Some browsers (e.g. Chrome 18 on Android) support IndexedDb but do not allow writing of these properties */
+        try {
+            window.IDBTransaction.READ_ONLY = window.IDBTransaction.READ_ONLY || "readonly";
+            window.IDBTransaction.READ_WRITE = window.IDBTransaction.READ_WRITE || "readwrite";
+        } catch (e) {}
+    }
     
 }(window, idbModules));
 

@@ -28,7 +28,7 @@
         console.log('anduin');
         req.onupgradeneeded = function (e) {
             // Récupération de la connexion
-            console.log('anduin1');
+            console.log('je créer les tables');
             dbHandle = e.target.result;
 
             var store;
@@ -36,6 +36,7 @@
             for (var nomStore in objetStructure) {
                 var aIndex = objetStructure[nomStore];
                 // Création magasin
+                console.log('je créer la table '+nomStore +' base : '+nomDb);
                 store = e.currentTarget.result.createObjectStore(nomStore, { keyPath: "id", autoIncrement: true });
                 // Parcours des index du magasin (champs en SQL)
                 for (var index in aIndex) {
@@ -61,7 +62,12 @@ function DeleteDatabase(dbName) {
 	/// </summary>
     /// <param name="dbName">nom de la BDD à suppr</param>
 
-    var dbRequest = window.indexedDB.deleteDatabase(dbName);
+    var IDB = window.indexedDB || 
+                    window.mozIndexedDB ||
+                    window.webkitIndexedDB || 
+                    window.msIndexedDB || 
+                    window.shimIndexedDB;
+    var dbRequest = IDB.deleteDatabase(dbName);
     dbRequest.onerror = function () { console.log("Error deleting database "+dbName); };
     dbRequest.onsuccess = function () { console.log("Database deleted "+dbName); };
     dbRequest.onblocked = function () { console.log("Database delete blocked "+dbName);};
@@ -77,17 +83,14 @@ function InsertData(nomDb, nomTable, aObjets, fctError) {
     /// <param name="fctError">(facultatif) fonction permettant de gérer l'erreur</param>
 
     // Gestion erreurs
-    var err = (fctError===undefined?function (e){console.log("erreur InsertData table:" + nomTable+' '+e.message);}:fctError);
-    // Connexion BDD
-        var db;
-        if (window.indexedDB) {
-            console.log('Opening Native IndexedDB');
-            db = window.indexedDB.open(nomDb);
-        }
-        else {
-            console.log('Opening IndexedDB Shimm');
-            db = window.shimIndexedDB.open(nomDb);
-        }
+    var err = (fctError===undefined?function (e){console.log("erreur InsertData base : "+nomDb+ " table:" + nomTable+' '+e.message);}:fctError);
+    // Connexion BDD   
+    var IDB = window.indexedDB || 
+                    window.mozIndexedDB ||
+                    window.webkitIndexedDB || 
+                    window.msIndexedDB || 
+                    window.shimIndexedDB;
+    var db = IDB.open(nomDb,2);
     // Connexion OK
     if (db) {
         // Callback de connexion réussi
@@ -104,10 +107,13 @@ function InsertData(nomDb, nomTable, aObjets, fctError) {
                     req = table.add(aObjets[i]);
                     // On gère les erreurs qui peuvent survenir lors de l'ajout de donnée
                     req.onerror = err;
+                    req.onsuccess=function(e){
+                        console.log("ajout effectué");
+                    }
                 }
             }
             catch (ex) {
-                HandleException(ex, "InsertData() La table " + nomTable + " n'existe pas ");
+                HandleException(ex, "InsertData() base : "+nomDb+ " La table " + nomTable + " n'existe pas ");
             }
         }
     }
@@ -147,15 +153,13 @@ function DeleteData(nomdB, keyObjet, nomTable, fctError) {
     // Gestion erreurs
     var err = (fctError===undefined?function (e){console.log("erreur InsertData table:" + nomTable+' '+e.message);}:fctError);
     // Connexion BDD
-        var db;
-        if (window.indexedDB) {
-            console.log('Opening Native IndexedDB');
-            db = window.indexedDB.open(nomDb);
-        }
-        else {
-            console.log('Opening IndexedDB Shimm');
-            db = window.shimIndexedDB.open(nomDb);
-        }
+
+    var IDB = window.indexedDB || 
+                    window.mozIndexedDB ||
+                    window.webkitIndexedDB || 
+                    window.msIndexedDB || 
+                    window.shimIndexedDB;
+    var db = IDB.open(nomDb,2);
     // Connexion OK
     if (db) {
         // Callback de connexion réussi
@@ -187,15 +191,12 @@ function ReadAll(nomDb, nomTable, fctSuccess, fctError) {
 
 
     // Connexion BDD
-        var req;
-        if (window.indexedDB) {
-            console.log('Opening Native IndexedDB');
-            req = window.indexedDB.open(nomDb);
-        }
-        else {
-            console.log('Opening IndexedDB Shimm');
-            req = window.shimIndexedDB.open(nomDb);
-        }
+    var IDB = window.indexedDB || 
+                    window.mozIndexedDB ||
+                    window.webkitIndexedDB || 
+                    window.msIndexedDB || 
+                    window.shimIndexedDB;
+        var req = IDb.open(nomDb,2);
     // Variables
     var aData = [];
     // Overture BDD ok
@@ -265,15 +266,12 @@ function Read(nomDb, magasins, magCondition, nomIndex, range) {
     // Promise
     return new Promise(function (ok, ko) {
         // Connexion BDD
-        var req;
-        if (window.indexedDB) {
-            console.log('Opening Native IndexedDB');
-            req = window.indexedDB.open(nomDb);
-        }
-        else {
-            console.log('Opening IndexedDB Shimm');
-            req = window.shimIndexedDB.open(nomDb);
-        }
+        var IDB = window.indexedDB || 
+                    window.mozIndexedDB ||
+                    window.webkitIndexedDB || 
+                    window.msIndexedDB || 
+                    window.shimIndexedDB;
+        var req = IDb.open(nomDb,2);
         // Variables
         var aData = [];
         // Overture BDD ok
