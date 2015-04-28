@@ -10,7 +10,7 @@
     <repo>https://github.com/driftyco/ionic-plugins-keyboard.git</repo>
     <issue>https://github.com/driftyco/ionic-plugins-keyboard/issues</issue>
 
-  <js-module src="www/keyboard.js" name="keyboard">
+  <js-module src="./www/keyboard.js" name="keyboard">
     <clobbers target="cordova.plugins.Keyboard" />
   </js-module>
 
