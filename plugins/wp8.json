@@ -5,11 +5,21 @@
     },
     "config_munge": {
         "files": {
+            "Properties/WMAppManifest.xml": {
+                "parents": {
+                    "/Deployment/App/Capabilities": [
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_NETWORKING\" />",
+                            "count": 2
+                        }
+                    ]
+                }
+            },
             "config.xml": {
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Notification\"><param name=\"wp-package\" value=\"Notification\" /></feature>",
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"wp-package\" value=\"InAppBrowser\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -18,8 +28,11 @@
         }
     },
     "installed_plugins": {
-        "org.apache.cordova.dialogs": {
-            "PACKAGE_NAME": "{a9421790-e80c-11e4-83b7-e562377836e5}"
+        "com.ionic.keyboard": {
+            "PACKAGE_NAME": "{A1D5E07A-3EB7-4228-8472-B3BADD1CD6CB}"
+        },
+        "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "{A1D5E07A-3EB7-4228-8472-B3BADD1CD6CB}"
         }
     },
     "dependent_plugins": {}
