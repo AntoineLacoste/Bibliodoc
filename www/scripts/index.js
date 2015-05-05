@@ -5,27 +5,14 @@
     var nav = WinJS.Navigation;
     var sched = WinJS.Utilities.Scheduler;
     var ui = WinJS.UI;
-    if(navigator.userAgent.match(/Chrome|Trident/)){
-        onReady();
-    }
-    else{
-        document.addEventListener("deviceready", onReady, false);
-        document.addEventListener("resume", onResume, false);
-        document.addEventListener("pause", onPause, false);
-    }
 
-    function onReady() {
-        // Handle the deviceready event.
+    if(navigator.userAgent.match(/Chrome|Trident/)){
         initialize();
     }
-
-    function onResume() {
-        // Handle the resume event
+    else{
+        document.addEventListener("deviceready", initialize, false);
     }
 
-    function onPause() {
-        // Handle the pause event
-    }
 
     function initialize() {
 
@@ -35,6 +22,7 @@
         // Optimize the load of the application and while the splash screen is shown, execute high priority scheduled work.
         ui.disableAnimations();
         var p = ui.processAll().then(function () {
+            console.log("anduin");
             return nav.navigate(nav.location || Application.navigator.home, nav.state);
         }).then(function () {
             return sched.requestDrain(sched.Priority.aboveNormal + 1);
